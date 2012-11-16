@@ -1,0 +1,30 @@
+
+// impl <A: std::json::ToJson Copy> ~std::map::HashMap<~str, A>: std::json::ToJson {
+//     fn to_json() -> std::json::Json {
+//         let mut d = send_map::linear::LinearMap();
+//         for self.each_ref |key, value| {
+//             d.insert(copy *key, value.to_json());
+//         }
+//         std::json::Object(~d)
+//     }
+// }
+
+/*
+hugod> any hints on how to convert a HashMap to json?                    [16:50]
+<    bstrie> hugod: there's a json module in the standard library, but I've
+  never used it before :)                                                 [16:51]
+<hugod> in 0.4 the impl of ToJson for HashMap is commented
+<     brson> hugod: it will probably involve fixing the that impl in std  [16:52]
+<     brson> i mean, it will, definitely involve that
+<hugod> ;)
+<hugod> I tried to implement the Trait in my own code, but I see that isn't
+        permitted
+<    bstrie> hugod: yeah, impls have to appear in either the same crate as the
+  trait or the same crate as the type                                     [16:53]
+<    bstrie> for complicated reasons
+<     brson> it's possible to work around that with a newtype, like `struct
+  MyHashMap(HashMap<Foo>)` (or whatever the syntax is), then implementing ToJson
+  on that                                                                 [16:54]
+<hugod> brson: thanks, I'll give that a go
+> 
+*/

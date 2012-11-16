@@ -1,0 +1,6 @@
+#[ link(name = "hulk", vers = "0.1.0", auth = "hugod")];
+#[crate_type = "bin"];
+
+mod main;
+mod fact;
+mod system;
